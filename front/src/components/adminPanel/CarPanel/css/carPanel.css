@@ -1,0 +1,267 @@
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.main__section {
+    width: 100%;
+    height: 100vh;
+    background-color: #2F394E;
+    display: flex;
+    padding-top: 34px;
+    padding-bottom: 16px;
+}
+
+.admin-panel__left-container {
+    max-width: 150px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin__information-container {
+    width: 100%;
+    margin-right: 34px;
+    height: auto;
+    max-height: 100%;
+    background-color: #F3F3F3;
+    border-radius: 50px;
+    padding: 46px 70px 0 70px;
+}
+
+.left-container__img{
+    max-width: 50px;
+}
+
+.left-container__menu-block{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 33px;
+}
+
+.left-container__logo{
+    width: 90px;
+    margin: 0 auto;
+}
+
+.left-container__text-menu{
+    padding: 0 10px 0 10px;
+    margin: 0;
+    color: #DDE4FE;
+    font-family: 'Inter';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.left-container__logo{
+    margin-bottom: 80px;
+}
+
+.left-container__img{
+    margin-bottom: 5px;
+}
+
+.left-container__menu-block-link{
+    text-align: center;
+}
+
+.information-container__title-box{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.information-container__title{
+    color: #333;
+    font-family: 'Inter';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.information-container__search{
+    color: #333333;
+    font-family: 'Inter';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: start;
+    border-radius: 8px;
+    border: 1px solid rgba(47, 57, 78, 0.22);
+    background: #FFF;
+    width: 393px;
+    height: 30px;
+    align-self: flex-end;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.information-container__search:focus{
+    outline: 1px solid #2F394E;
+    outline-offset: 0;
+}
+
+.information-container__search::placeholder{
+    color: #8B8B8B;
+    font-family: 'Inter';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.information-container__car-item{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #FFF;
+    padding: 7px 16px;
+    border-radius: 35px;
+}
+
+.information-container__content{
+    overflow-y: scroll;
+    height: 76vh;
+}
+
+.information-container__content::-webkit-scrollbar {
+    width: 0;
+  }
+
+
+.car-item__img{
+    height: 50px;
+    width: 65px;
+    object-fit: fill;
+    border-radius: 50%;
+}
+
+.car-item__data-car-box{
+    display: flex;
+    flex-grow: 3;
+    margin-left: 20px;
+}
+
+.car-item__car-id{
+    color: #858585;
+    font-family: 'Inter';
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-right: 10px;
+}
+
+.car-item__car-name{
+    color: #393939;
+    font-family: 'Inter';
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-decoration-line: underline;
+}
+
+.car-item__car-price-site-box{
+    color: #858585;
+    font-family: 'Inter';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    flex-grow: 2;
+    padding-left: 10px;
+}
+
+.car-price-site{
+    color: #4C53A1;
+    font-family: 'Inter';
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-left: 10px;
+}
+
+.car-item__car-price-expenses-box{
+    color: #858585;
+    font-family: 'Inter';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    flex-grow: 7;
+    padding-left: 10px;
+}
+
+.car-price-expenses{
+    color: #DC4C3E;
+    font-family: 'Inter';
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-left: 10px;
+}
+
+.car-price-expenses-sup-sell{
+    color: #3BC539;
+    font-family: 'Inter';
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    vertical-align: 15px;
+}
+
+.car-item__about-car{
+    color: #858585;
+    font-family: 'Inter';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration-line: underline;
+    flex-grow: 8;
+    padding-right: 10px;
+}
+
+.car-item__user-box{
+    display: flex;
+    align-items: center;
+    flex-grow: 0;
+}
+
+.car-item__user-img-box{
+    width: 44px;
+    height: 44px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.car-item__user-img{
+    height: 100%;
+    width: auto;
+}
+
+.car-item__user-fio{
+    color: #393939;
+    font-family: 'Inter';
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 10px;
+}
+
+.left-container__menu-block_bottom{
+    margin-top: auto;
+}

@@ -1,0 +1,130 @@
+
+.main-slider__container{
+    display: flex;
+    max-width: 1070px;
+    margin-bottom: 60px;
+  }  
+
+.window{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+@keyframes opacitySlider {
+  0% {
+    opacity: 0.15;
+  }
+  25% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0;
+  }
+  65% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.all-pages-container{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+
+    transition: translate;
+    transition-property: transform;
+    transition-duration: 700ms;
+    transition-timing-function: ease-in-out;
+}
+
+.animation-opacity{
+  animation-name: opacitySlider;
+  animation-duration: 1.3s;
+  animation-iteration-count: infinite;
+}
+
+.main-slider__arrow-rigth{
+    align-self: center;
+    transform: translateX(40px);
+  }
+  
+  .main-slider__arrow-rigth:hover circle {
+    fill: #DC4C3E;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .main-slider__arrow-left{
+    align-self: center;
+    transform: translateX(-40px);
+  }
+  
+  .main-slider__arrow-left:hover circle {
+    fill: #DC4C3E;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .main-slider__box{
+    width: 100%;
+    background: linear-gradient(126deg, rgba(239, 239, 239, 1) 0%, rgba(239, 239, 239, 1) 64%, rgba(255, 255, 255, 1) 64%);
+    border-radius: 5px;
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
+    
+  }
+  
+  .main-slider__slides-pagination{
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  
+  .main-slider__item-pagination{
+    margin-right: 3px;
+  }
+  
+  .main-slider__wrapper{
+    padding: 30px 100px;
+  }
+  
+  .main-slider__content{
+    margin-top: 26px;
+  }
+  
+  .slide-item__top-content{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 40px;
+  }
+  
+  .slide-item__top-content-left{
+    max-width: 460px;
+  }
+  
+  .top-content-left__title{
+    color: #363636;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 25px;
+    margin-bottom: 20px;
+  }
+  
+  .top-content-left__text{
+    color: #333;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    margin-bottom: 14px;
+  }
+  
+  .top-content-rigth__image{
+    width: 100%;
+  }
+  
+  .top-content-rigth__image-box{
+    width: 100%;
+  }

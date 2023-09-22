@@ -1,0 +1,151 @@
+
+.product-gallery{
+    width: 569px;
+}
+
+.product-card__gallery{
+    max-width: 569px;
+    width: 100%;
+    margin-right: 25px;
+}
+
+.product-card__image-container{
+    margin-bottom: 1px;
+    overflow: hidden;
+    position: relative;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 100%;
+    will-change: transform;
+}
+
+.product-card__image-cover{
+    display: block;
+    position: absolute;
+    content: "";
+    background-size: 150%;
+    background-position: 99%;
+    background-repeat: no-repeat;
+    filter: blur(17px) brightness(.6);
+    bottom: -49px;
+    left: -53px;
+    right: -39px;
+    top: -36px;
+}
+
+.product-card__image{
+    display: block;
+    height: 438px;
+    width: 569px;
+    margin: auto;
+    max-width: 100%;
+    object-fit: contain;
+    position: relative;
+    transition: transform .5s;
+}
+
+.product-card__image:hover{
+    transform: scale(1.2);
+     cursor: url("../../../public/images/svg/lupaplus.svg"), auto;
+
+}
+
+.product-card__gallery-botom-box{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(aito-fit, 58px);
+    grid-gap: 1px;
+}
+
+.product-card__gallery-image-box{
+    position: relative;
+    overflow: hidden;
+    height: 58px;
+}
+
+.product-card__gallery-image{
+    background-position: 51%;
+    background-size: contain;
+    display: block;
+    object-fit: cover;
+    width: 100%;
+}
+
+.fullscreen-gallery-wrapper{
+    display: none;
+    position: fixed;
+    overflow: auto;
+    width: 100%;
+    background-color: black;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.gallery-active{
+    display: block;
+}
+
+.fullscreen-gallery-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+.fullscreen-gallery__close-btn{
+    position: sticky;
+    top: 20px;
+    left: 95%;
+    width: 40px;
+    background-color: transparent;
+    border: none;
+}
+
+.fullscreen-gallery__close-btn:hover{
+    cursor: pointer;
+}
+
+.fullscreen-gallery__background{
+    bottom: 0;
+    filter: blur(20px);
+    height: 100%;
+    left: 0;
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0.7;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.fullscreen-images-container{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: calc(100% - 12px);
+    max-height: calc(100% - 12px);
+    overflow: auto;
+    overscroll-behavior-y: contain;
+    position: relative;
+    scrollbar-width: none;
+    width: 100%;
+}
+
+.fullscreen__image-box{
+    box-sizing: border-box;
+    margin: auto;
+    max-width: 100%;
+    padding: 6px 6px 0;
+    position: relative;
+}
+
+.fullscreen__image{
+    box-sizing: border-box;
+    cursor: url("../../../public/images/svg/lupaplus.svg"), auto;
+    display: block;
+    margin: auto;
+    max-height: calc(100vh - 12px);
+    max-width: 100%;
+
+}
