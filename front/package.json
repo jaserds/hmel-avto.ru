@@ -1,0 +1,55 @@
+{
+  "name": "hmel-avto",
+  "version": "1.0.0",
+  "description": "Your app description",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "stra": "set PORT=3000 && react-scripts start"
+  },
+  "keywords": [],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.15.4",
+    "@babel/preset-env": "^7.15.4",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.5.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "react-scripts": "^5.0.1",
+    "style-loader": "^3.3.0",
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.0",
+    "webpack-dev-server": "^4.5.0"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "draft-convert": "^2.1.13",
+    "draft-js": "^0.11.7",
+    "jwt-decode": "^3.1.2",
+    "mobx": "^6.4.1",
+    "mobx-react": "^7.4.3",
+    "mobx-react-lite": "^3.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-draft-wysiwyg": "^1.15.0",
+    "react-grid-gallery": "^1.0.0",
+    "react-router-dom": "^6.15.0",
+    "react-spinners": "^0.13.8"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
