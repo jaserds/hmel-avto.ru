@@ -17,6 +17,7 @@ class CarController {
             from cars
             inner join (brand inner join models on brand.BrandID = models.BrandID) on cars.ModelID = models.ModelID
             inner join generation on cars.generation = generation.GenerationID
+            where isSite = 1
             LIMIT ${limit} OFFSET ${offset};
             `)
 
@@ -39,7 +40,7 @@ class CarController {
             LIMIT 1`)
     return res.json(images)
   }
-
+  
   async getAllPhotoByCarId(req, res) {
     let dataImages = [];
     const [images, metadata] = await db.query(
@@ -72,7 +73,7 @@ class CarController {
             generation.GenerationAge, bodytypes.BodyName, enginetypes.EnginTypeName, 
             transsmissions.TranssmissionsName, cars.rule, colors_car.ColorName, driveunit.DriveUnitName, 
             cars.VolumeEngine, cars.EnginePower, cars.Mileage, cars.QtyPerson, cars.Age, cars.Price, 
-            cars.Customs, cars.PTS, cars.DescriptionOfDefects, cars.State, cars.phone, cities.CityName
+            cars.Customs, cars.PTS, cars.DescriptionOfDefects, cars.State, cars.phone, cities.CityName, cars.isSite
             FROM db_cars.cars
             inner join models on cars.ModelID = models.ModelID
             inner join brand on models.BrandID = brand.BrandID
@@ -83,7 +84,7 @@ class CarController {
             inner join colors_car on colors_car.ColorID = ColorCarID
             inner join (driveunit inner join (models modelDriveUnit inner join driveunit_model on modelDriveUnit.ModelID = driveunit_model.ModelID) on driveunit.id = driveunit_model.DriveUnitID) on cars.DriveUnitID = driveunit_model.id
             inner join cities on City = cities.idCity
-            where carID = '${req.params.carID}'`)
+            where carID = '${req.params.carID} AND isSite = 1'`)
     return res.json(car[0])
   }
 
@@ -100,6 +101,7 @@ class CarController {
           inner join brand on brand.BrandID = cars.BrandID
           inner join models on models.ModelID = cars.ModelID
           where BrandName = '${dataSimilarCars.carBrand}' and ModelName = '${dataSimilarCars.carModel}' and (Price > ${dataSimilarCars.carPrice - dataSimilarCars.carPrice / 100 * 10} and Price < ${dataSimilarCars.carPrice + dataSimilarCars.carPrice / 100 * 10})
+          where isSite = 1
           limit 4
           `)
           
@@ -107,14 +109,12 @@ class CarController {
       let similarCarsData = null;
 
       if (filtersSimilarCars.length <= 3){
-	const similarCarsDataId = filtersSimilarCars.slice(0, filtersSimilarCars.length).map(car => car.carID);
-	similarCarsData = similarCarsDataId.map((element) => `${element}`).join(', ');
+        const similarCarsDataId = filtersSimilarCars.slice(0, filtersSimilarCars.length).map(car => car.carID);
+        similarCarsData = similarCarsDataId.map((element) => `${element}`).join(', ');
       } else {
-	const similarCarsDataId = filtersSimilarCars.slice(0, 3).map(car => car.carID);
-	similarCarsData = similarCarsDataId.map((element) => `${element}`).join(', ');
+        const similarCarsDataId = filtersSimilarCars.slice(0, 3).map(car => car.carID);
+        similarCarsData = similarCarsDataId.map((element) => `${element}`).join(', ');
       }
-      
-      console.log(similarCarsData)
 
       const [similarCarsPhoto, metadataPhoto] = await db.query(
         `
@@ -169,7 +169,7 @@ class CarController {
     inner join colors_car on colors_car.ColorID = ColorCarID
     inner join (driveunit inner join (models modelDriveUnit inner join driveunit_model on modelDriveUnit.ModelID = driveunit_model.ModelID) on driveunit.id = driveunit_model.DriveUnitID) on cars.DriveUnitID = driveunit_model.id
     inner join cities on City = cities.idCity
-    WHERE`;
+    WHERE isSite = 1 AND`;
 
     if (searchText.length === 1){
       sqlQuery += ` CONCAT(BrandName, ' ', 
@@ -282,7 +282,9 @@ class CarController {
 
 
     if (conditions.length > 0) {
-      sqlQuery += ' WHERE ' + conditions.join(' AND ');
+      sqlQuery += ' WHERE isSite = 1 AND ' + conditions.join(' AND ');
+    } else {
+      sqlQuery += ' WHERE isSite = 1'
     }
 
     sqlQuery = sqlQuery += ` LIMIT ${limit} OFFSET ${offset}`
@@ -291,7 +293,7 @@ class CarController {
       const [cars, metadata] = await db.query(sqlQuery)
       return res.json(cars)
     } catch (e){
-      return next(ApiError.BadRequest('* РќРµ РІРµСЂРЅС‹Р№ РїРѕРёСЃРєРѕРІС‹Р№ Р·Р°РїСЂРѕСЃ', e))
+      return next(ApiError.BadRequest('* Не верный поисковый запрос', e))
     }
     
   };
@@ -304,15 +306,15 @@ class CarController {
     const filesToKeepImg = images;
     const filesToKeepDocs = docs
 
-  // РџСѓС‚СЊ Рє РїР°РїРєРµ, РІ РєРѕС‚РѕСЂРѕР№ РЅСѓР¶РЅРѕ СѓРґР°Р»РёС‚СЊ С„Р°Р№Р»С‹
-  const folderPathImg = './static/images';
-  const folderPathDocs = './static/documents';
+ 
+    const folderPathImg = './static/images';
+    const folderPathDocs = './static/documents';
 
-  fs.readdir(folderPathDocs, (err, files) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('РћС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё РїР°РїРєРё');
-    }
+    fs.readdir(folderPathDocs, (err, files) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Ошибка при чтении папки');
+      }
 
     const newDocsToKeep = filesToKeepDocs.map(file => file.documentName);
 
@@ -322,7 +324,7 @@ class CarController {
         fs.unlink(filePath, err => {
           if (err) {
             console.error(err);
-            return res.status(500).send('РћС€РёР±РєР° РїСЂРё СѓРґР°Р»РµРЅРёРё С„Р°Р№Р»Р°');
+            return res.status(500).send('Ошибка при удалении файла');
           }
         });
       }
@@ -333,7 +335,7 @@ class CarController {
   fs.readdir(folderPathImg, (err, files) => {
     if (err) {
       console.error(err);
-      return res.status(500).send('РћС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё РїР°РїРєРё');
+      return res.status(500).send('Ошибка при чтении папки');
     }
 
     const newfilesToKeep = filesToKeepImg.map(file => file.fileName);
@@ -344,13 +346,13 @@ class CarController {
         fs.unlink(filePath, err => {
           if (err) {
             console.error(err);
-            return res.status(500).send('РћС€РёР±РєР° РїСЂРё СѓРґР°Р»РµРЅРёРё С„Р°Р№Р»Р°');
+            return res.status(500).send('Ошибка при удалении файла');
           }
         });
       }
     }); 
 
-      res.status(200).send('Р¤Р°Р№Р»С‹ СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅС‹');
+      res.status(200).send('Файлы успешно удалены');
     });
   }
 
