@@ -217,7 +217,7 @@ const CarCard = () => {
 
                             return (
                                 <li key={index} className="product-card__list-item">
-                                    <NavLink to={"http://localhost:4444/car/" + similarCar.carID} className="product-card__list-item-link">
+                                    <NavLink to={"https://hmel-avto.ru/car/" + similarCar.carID} className="product-card__list-item-link">
                                         <div className="product-card__item-image-box">
                                             <div className="product-card__item-wrapper">
                                                 <img src={"/images/" + similarCar.photocar} alt="" className="product-card__item-image" />

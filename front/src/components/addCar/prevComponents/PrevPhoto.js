@@ -4,30 +4,25 @@ import React from "react";
 
 const PrevPhoto = (props) => {
 
-    function dragStartHandler(e, carPhoto){
-        console.log("drag", carPhoto)
-    }
-
-    function dragEndHandler(e){
-
-    }
-
-    function dragOverHandler(e){
-        e.preventDefault()
-    }
-
-    function dropHandler(e, carPhoto){
-        e.preventDefaukt()
-        console.log("drop", carPhoto);
-    }
+    const handleDragStart = (e) => {
+        e.dataTransfer.setData('text/plain', props.dataIndex.toString());
+      };
+    
+      const handleDragOver = (e) => {
+        e.preventDefault();
+      };
+    
+      const handleDrop = (e) => {
+        e.preventDefault();
+        const draggedIndex = parseInt(e.dataTransfer.getData('text/plain'), 10);
+        props.onDrop(draggedIndex, props.dataIndex);
+      };
 
     return (
         <div 
-            onDragStart={(e) => dragStartHandler(e, props.carPhoto)}
-            onDragLeave={(e) => dragEndHandler(e)}
-            onDragEnd={(e) => dragEndHandler(e)}
-            onDragOver={(e) => dragOverHandler(e)}
-            onDrop={(e) => dropHandler(e, props.carPhoto)}
+            onDragStart={handleDragStart}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
             draggable={true} 
             className="photo-car__prev-img-box"
             onClick={props.onClick}

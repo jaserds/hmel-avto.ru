@@ -30,7 +30,6 @@ const Photo = (props) => {
                 setNextId(nextId + files.length)
             }
           };
-    
           reader.readAsDataURL(file);
         }
       };
@@ -44,6 +43,19 @@ const Photo = (props) => {
         }, 300)
     };
 
+    const handleDrop = (draggedIndex, droppedIndex) => {
+        const newImages = [...previewImages];
+        const [draggedImage] = newImages.splice(draggedIndex, 1);
+        newImages.splice(droppedIndex, 0, draggedImage);
+        props.setFilesImages((pevFiles) => {
+            const newFiles = [...pevFiles];
+            const [draggedFiles] = newFiles.splice(draggedIndex, 1);
+            newFiles.splice(droppedIndex, 0, draggedFiles);
+            return newFiles;
+        });
+        setPreviewImages(newImages);
+      };
+
     return (
         <section className="photo-car car__section">
         <div className="characteristic-car">
@@ -56,8 +68,15 @@ const Photo = (props) => {
                 </div>
                 <p className="photo-download__information-text">* Не более 24 фотографий (jpg, jpeg, png)</p>
                 <div className="photo-car__prev-box">
-                    {previewImages.map((image) => {
-                        return <PrevPhoto key={image.id} src={image.src} index={image.id} onClick={() => {handleDelete(image.id, image.filename)}}/>
+                    {previewImages.map((image, index) => {
+                        return <PrevPhoto
+                        key={image.id}
+                        src={image.src}
+                        index={image.id}
+                        dataIndex={index}
+                        onClick={() => {handleDelete(image.id, image.filename)}}
+                        onDrop={handleDrop}
+                        />
                     })}
                 </div>
             </div>
