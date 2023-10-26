@@ -1,4 +1,5 @@
-import { MAIN_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, ADDCAR_ROUTE, CARPAGE_ROUTE, ADMIN_ROUTE, SEARCHPAGE_ROUTE, RULES_CON_ROUTE, POLICY_CON_ROUTE, USER_AGREEMENT_CON_ROUTE} from "./utils/consts"
+import { MAIN_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, ADDCAR_ROUTE, CARPAGE_ROUTE,
+    ADMIN_ROUTE, SEARCHPAGE_ROUTE, RULES_CON_ROUTE, POLICY_CON_ROUTE, USER_AGREEMENT_CON_ROUTE, CAR_DETAILS_ROUTE} from "./utils/consts"
 import MainPage from './pages/mainPage';
 import LoginPage from './pages/loginPage';
 import RegistrationPage from './pages/registrationPage';
@@ -9,6 +10,8 @@ import PolicyCon from "./pages/policyCon";
 import SiteRules from "./pages/siteRules";
 import UserAgreement from "./pages/userAgreement";
 import AdminPanelPage from "./pages/AdminPanelPage";
+import CarDetailsPage from "./pages/CarDetailsPage";
+
 
 
 
@@ -20,6 +23,10 @@ export const authRouts = [
     {
         path: ADMIN_ROUTE,
         Component: AdminPanelPage
+    },
+    {
+        path: CAR_DETAILS_ROUTE + "/:id",
+        Component: CarDetailsPage
     },
 ]
 
