@@ -227,7 +227,7 @@ const Header = observer(({setPage}) => {
     const result = await SearchCarsServices.getSearchCars(`searchtext=${textQuery}`, 5, 1);
     setPage(2)
     cars.setSearchCars(result.data);
-    navigate(`all/car/search?searchtext=${textQuery}`);
+    navigate(`/all/car/search?searchtext=${textQuery}`);
   }
 
   const findHandler = async (...args) => {
@@ -278,7 +278,7 @@ const Header = observer(({setPage}) => {
     const result = await InputServices.getSearchCars(optionsQurey.join('&'));
     cars.setSearchCars(result.data);
 
-    navigate(`all/car/search?${optionsQurey.join('&')}`);
+    navigate(`/all/car/search?${optionsQurey.join('&')}`);
   }
 
   return (
